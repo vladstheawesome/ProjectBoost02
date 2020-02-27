@@ -14,10 +14,12 @@ public class Jetpack : MonoBehaviour
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip death;
     [SerializeField] AudioClip damageImpact;
+    [SerializeField] AudioClip healingPotion;
 
     [SerializeField] ParticleSystem jetPackParticles;
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem healParticles; 
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -27,6 +29,7 @@ public class Jetpack : MonoBehaviour
 
     DamageOnCollision typeOfDamage;
     PlayerHealthBar player;
+    GameObject astronaut; 
     private float trackHealth;
 
     void Start()
@@ -34,6 +37,7 @@ public class Jetpack : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         player = GetComponent<PlayerHealthBar>();
+        astronaut = GameObject.FindWithTag("Player");
     }
 
     void Update()
@@ -75,9 +79,7 @@ public class Jetpack : MonoBehaviour
                 }
                 break;
         }
-    }
-
-    
+    }    
 
     private void PlayerSuccess()
     {
@@ -102,7 +104,11 @@ public class Jetpack : MonoBehaviour
             {
                 state = State.Alive;
                 audioSource.PlayOneShot(damageImpact);
-                // TODO: realign player along the Y-Axis
+
+                // On collision with any object, make sure player is still facing front (left to right)
+                // and lock the Z-axis, so they are still moving along the gamepath
+                astronaut.transform.eulerAngles = new Vector3(0, 0, 0);
+                astronaut.transform.position = new Vector3(transform.position.x, transform.position.x, 0);
             }
             else
             {
@@ -128,8 +134,9 @@ public class Jetpack : MonoBehaviour
             if (currentHealth > Mathf.Epsilon || currentHealth < 100f)
             {
                 state = State.Alive;
-                // TODO: play healing sound
-                // TODO: destroy gameobject
+                audioSource.PlayOneShot(healingPotion);
+                healParticles.Play();
+                Destroy(collision.gameObject);
             }
         }
     }

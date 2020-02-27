@@ -41,6 +41,12 @@ namespace ProjectBoost.Attributes
         public void GetHealing(float healing)
         {
             currentHealth += healing;
+            
+            // make sure health does not exceed 100f
+            if(currentHealth > 100f)
+            {
+                currentHealth = 100f;
+            }
 
             healthBar.SetHealth(currentHealth);
 
