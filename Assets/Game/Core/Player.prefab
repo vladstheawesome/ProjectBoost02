@@ -941,6 +941,7 @@ GameObject:
   - component: {fileID: 814742266991683347}
   - component: {fileID: 1474160767}
   - component: {fileID: 139146248053421846}
+  - component: {fileID: 875928387}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1158,7 +1159,8 @@ MonoBehaviour:
   success: {fileID: 8300000, guid: d80faa501eee716408f8368c9246c5dd, type: 3}
   death: {fileID: 8300000, guid: fd8f8f489b56b054fa612799a66cffa1, type: 3}
   damageImpact: {fileID: 8300000, guid: 77a4bad2ce3ccd247bcdce0d651460ac, type: 3}
-  healingPotion: {fileID: 8300000, guid: 73bfb2ccb35da794d8be12cad12bf958, type: 3}
+  healingPortion: {fileID: 8300000, guid: 73bfb2ccb35da794d8be12cad12bf958, type: 3}
+  refuelPortion: {fileID: 8300000, guid: 0a0def4560b4dde49bb6233e0676ba9d, type: 3}
   jetPackParticles: {fileID: 7403019048882500111}
   successParticles: {fileID: 4103276277417556910}
   deathParticles: {fileID: 7206664738562438949}
@@ -1178,6 +1180,21 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 0}
+--- !u!114 &875928387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814703501341791834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686bc00f7b6e07843ba5b25b12fd836c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFuel: 120
+  currentFuel: 0
+  fuelBar: {fileID: 0}
 --- !u!1001 &4103276277437080682
 PrefabInstance:
   m_ObjectHideFlags: 0

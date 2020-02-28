@@ -3,6 +3,7 @@ using ProjectBoost.Attributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using ProjectBoost.FuelSystem;
 
 public class Jetpack : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class Jetpack : MonoBehaviour
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip death;
     [SerializeField] AudioClip damageImpact;
-    [SerializeField] AudioClip healingPotion;
+    [SerializeField] AudioClip healingPortion;
+    [SerializeField] AudioClip refuelPortion;
 
     [SerializeField] ParticleSystem jetPackParticles;
     [SerializeField] ParticleSystem successParticles;
@@ -29,14 +31,19 @@ public class Jetpack : MonoBehaviour
 
     DamageOnCollision typeOfDamage;
     PlayerHealthBar player;
+    PlayerFuelBar playerFuel;
     GameObject astronaut; 
+
     private float trackHealth;
+    private float trackFuel;
+    private float fuelThrustValue = 5f;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         player = GetComponent<PlayerHealthBar>();
+        playerFuel = GetComponent<PlayerFuelBar>();
         astronaut = GameObject.FindWithTag("Player");
     }
 
@@ -73,13 +80,18 @@ public class Jetpack : MonoBehaviour
                     PlayerHeal(collision);
                 }
                 break;
+            case "Refueling":
+                {
+                    PlayerRefuel(collision);
+                }
+                break;
             default:
                 {
                     PlayerTakeDamage(collision);
                 }
                 break;
         }
-    }    
+    }
 
     private void PlayerSuccess()
     {
@@ -108,7 +120,7 @@ public class Jetpack : MonoBehaviour
                 // On collision with any object, make sure player is still facing front (left to right)
                 // and lock the Z-axis, so they are still moving along the gamepath
                 astronaut.transform.eulerAngles = new Vector3(0, 0, 0);
-                astronaut.transform.position = new Vector3(transform.position.x, transform.position.x, 0);
+                astronaut.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             }
             else
             {
@@ -123,21 +135,48 @@ public class Jetpack : MonoBehaviour
 
     private void PlayerHeal(Collision collision)
     {
+        var currentHealth = player.GetCurrentHealth(trackHealth);
+        var maxHealth = player.GetMaxHealth(trackHealth);
+
         if (collision.gameObject.GetComponent<HealingOnCollision>() != null)
         {
             var healingType = collision.gameObject.GetComponent<HealingOnCollision>().healingEffect;
             var collisionHealing = player.GetHealingValues(healingType);
 
-            player.GetHealing(collisionHealing);
-            var currentHealth = player.GetCurrentHealth(trackHealth);
-
-            if (currentHealth > Mathf.Epsilon || currentHealth < 100f)
+            if (currentHealth > Mathf.Epsilon || currentHealth < maxHealth)
             {
+                player.GetHealing(collisionHealing);
+
+                Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), astronaut.GetComponent<Collider>(), false);
                 state = State.Alive;
-                audioSource.PlayOneShot(healingPotion);
+                audioSource.PlayOneShot(healingPortion);
                 healParticles.Play();
                 Destroy(collision.gameObject);
             }
+        }
+    }
+
+    private void PlayerRefuel(Collision collision)
+    {
+        var currentFuel = playerFuel.GetCurrentFuel(trackFuel);
+        var maxFuel = playerFuel.GetMaxFuel(trackFuel);
+
+        if (collision.gameObject.GetComponent<RefuelOnCollision>() != null)
+        {
+            var refuelAmount = collision.gameObject.GetComponent<RefuelOnCollision>().fuelAmount;
+            var collisionFueling = playerFuel.GetFuelValues(refuelAmount);
+
+            if (currentFuel > Mathf.Epsilon || currentFuel < maxFuel)
+            {
+                playerFuel.ReFuel(collisionFueling);
+
+                Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), astronaut.GetComponent<Collider>(), false);
+                state = State.Alive;
+                audioSource.PlayOneShot(refuelPortion);
+                // TODO: play refueling particles
+                Destroy(collision.gameObject);
+            }
+
         }
     }
 
@@ -155,7 +194,12 @@ public class Jetpack : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space)) // can thrust while rotating
         {
-            ApplyThrust();
+            // Only thrust if we have fuel
+            var currentFuel = playerFuel.GetCurrentFuel(trackFuel);
+            if (currentFuel > Mathf.Epsilon)
+            {
+                ApplyThrust();
+            }
         }
         else
         {
@@ -167,12 +211,25 @@ public class Jetpack : MonoBehaviour
     private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        var playerFuel = GameObject.FindWithTag("Player").GetComponent<PlayerFuelBar>();
         if (!audioSource.isPlaying)
         {
+            UseJetPackFuel(playerFuel);
             audioSource.PlayOneShot(mainEngine);
             jetPackParticles.Play();
         }
-        //jetPackParticles.Play();
+    }
+
+    private void UseJetPackFuel(PlayerFuelBar usefuel)
+    {      
+
+        if (usefuel != null)
+        {
+            usefuel.UseFuel(fuelThrustValue);
+            var currentFuel = usefuel.GetCurrentFuel(trackFuel);
+            // Play refuel sound
+            // Play refuel particles 
+        }
     }
 
     private void RespondToRotate()

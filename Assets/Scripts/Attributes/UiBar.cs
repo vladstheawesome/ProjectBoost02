@@ -5,21 +5,22 @@ using UnityEngine.UI;
 
 namespace ProjectBoost.Attributes
 {
-    public class HealthBar : MonoBehaviour
+    // UiBar: Can be a health bar or fuel bar
+    public class UiBar : MonoBehaviour
     {
         public Slider slider;
         public Gradient gradient;
         public Image fill;
 
-        public void SetMaxHealth(float health)
+        public void SetMaxBarValue(float value)
         {
-            slider.maxValue = health;
-            slider.value = health;
+            slider.maxValue = value;
+            slider.value = value;
 
             fill.color = gradient.Evaluate(1f); // Health at max green range
         }
 
-        public void SetHealth(float health)
+        public void SetBarValue(float health)
         {
             slider.value = health;
 

@@ -11,29 +11,24 @@ namespace ProjectBoost.Attributes
         [SerializeField] float maxHealth = 100f;
         [SerializeField] float currentHealth = 0f;
 
-        public HealthBar healthBar;
+        public UiBar healthBar;
 
-        // Start is called before the first frame update
         void Start()
         {
             currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
+            healthBar.SetMaxBarValue(maxHealth);
         }
 
-        // Update is called once per frame
         void Update()
         {
-            //if (Input.GetKeyDown(KeyCode.T))
-            //{
-            //    TakeDamage(20);
-            //}
+
         }
 
         public void TakeDamage(float damage)
         {
             currentHealth -= damage;
 
-            healthBar.SetHealth(currentHealth);
+            healthBar.SetBarValue(currentHealth);
 
             GetCurrentHealth(currentHealth);
         }
@@ -43,12 +38,12 @@ namespace ProjectBoost.Attributes
             currentHealth += healing;
             
             // make sure health does not exceed 100f
-            if(currentHealth > 100f)
+            if(currentHealth > maxHealth)
             {
-                currentHealth = 100f;
+                currentHealth = maxHealth;
             }
 
-            healthBar.SetHealth(currentHealth);
+            healthBar.SetBarValue(currentHealth);
 
             GetCurrentHealth(currentHealth);
         }
@@ -56,6 +51,12 @@ namespace ProjectBoost.Attributes
         public float GetCurrentHealth(float trackHealth)
         {
             trackHealth = currentHealth;
+            return trackHealth;
+        }
+
+        public float GetMaxHealth(float trackHealth)
+        {
+            trackHealth = maxHealth;
             return trackHealth;
         }
 
