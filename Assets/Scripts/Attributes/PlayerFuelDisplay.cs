@@ -9,13 +9,14 @@ namespace ProjectBoost.Attributes
     public class PlayerFuelDisplay : MonoBehaviour
     {
         PlayerFuelBar fuel;
-        UiBar percentValue = new UiBar();
+        UiBar percentValue /*= new UiBar()*/;
 
         private float defaultValue = 120f;
 
         void Awake()
         {
             fuel = GameObject.FindWithTag("Player").GetComponent<PlayerFuelBar>();
+            percentValue = this.GetComponentInParent<UiBar>();
         }
 
         void Update()

@@ -10,14 +10,14 @@ namespace ProjectBoost.Attributes
     public class PlayerHealthDisplay : MonoBehaviour
     {
         PlayerHealthBar health;
-        UiBar percentValue = new UiBar();
+        UiBar percentValue /*= new UiBar()*/;
 
         private float defaultValue = 100f;
 
         void Awake()
         {
             health = GameObject.FindWithTag("Player").GetComponent<PlayerHealthBar>();
-            //percentValue.GetPercentageValue(100f);
+            percentValue = this.GetComponentInParent<UiBar>();
         }
 
         void Update()
