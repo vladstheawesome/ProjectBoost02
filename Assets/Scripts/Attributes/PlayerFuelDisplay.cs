@@ -9,6 +9,9 @@ namespace ProjectBoost.Attributes
     public class PlayerFuelDisplay : MonoBehaviour
     {
         PlayerFuelBar fuel;
+        UiBar percentValue = new UiBar();
+
+        private float defaultValue = 120f;
 
         void Awake()
         {
@@ -24,12 +27,14 @@ namespace ProjectBoost.Attributes
             {
                 currentFuel = 0f; // do not display negative value
             }
-            if (currentFuel > 120)
+            if (currentFuel > defaultValue)
             {
-                currentFuel = 120f;
+                currentFuel = defaultValue;
             }
 
-            GetComponent<Text>().text = String.Format("{0:0}/{1:0}", currentFuel, 120f);
+            double percentage = percentValue.GetPercentageValue(currentFuel, defaultValue);
+
+            GetComponent<Text>().text = String.Format("{0:0} %", percentage);
         }
     }
 }

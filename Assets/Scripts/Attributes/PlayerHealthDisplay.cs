@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +10,14 @@ namespace ProjectBoost.Attributes
     public class PlayerHealthDisplay : MonoBehaviour
     {
         PlayerHealthBar health;
+        UiBar percentValue = new UiBar();
+
+        private float defaultValue = 100f;
 
         void Awake()
         {
             health = GameObject.FindWithTag("Player").GetComponent<PlayerHealthBar>();
+            //percentValue.GetPercentageValue(100f);
         }
 
         void Update()
@@ -24,12 +29,14 @@ namespace ProjectBoost.Attributes
             {
                 currentHealth = 0f; // do not display negative value
             }
-            if (currentHealth > 100)
+            if (currentHealth > defaultValue)
             {
-                currentHealth = 100f;
+                currentHealth = defaultValue;
             }
-            
-            GetComponent<Text>().text = String.Format("{0:0}/{1:0}", currentHealth, 100f);
+
+            double percentage = percentValue.GetPercentageValue(currentHealth, defaultValue);
+
+            GetComponent<Text>().text = String.Format("{0:0} %", percentage);            
         }
     }
 }

@@ -26,5 +26,14 @@ namespace ProjectBoost.Attributes
 
             fill.color = gradient.Evaluate(slider.normalizedValue);
         }
+
+        public float GetPercentageValue(float currentHealth, float defaultValue)
+        {
+            var valueDividedByDefaultValue = currentHealth / defaultValue;
+
+            var valuePercentage = valueDividedByDefaultValue * 100;
+
+            return valuePercentage;
+        }
     }
 }

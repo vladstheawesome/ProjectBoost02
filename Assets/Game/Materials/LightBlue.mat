@@ -136,7 +136,7 @@ Material:
     m_Colors:
     - _Color: {r: 0.5312433, g: 1, b: 0.033018887, a: 1}
     - _ColorTint: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 1.5910457, b: 5.5583243, a: 0}
+    - _EmissionColor: {r: 0, g: 1.1383772, b: 1.5755798, a: 0}
     - _EmissiveColor: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

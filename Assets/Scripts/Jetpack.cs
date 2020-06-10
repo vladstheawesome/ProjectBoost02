@@ -21,7 +21,8 @@ public class Jetpack : MonoBehaviour
     [SerializeField] ParticleSystem jetPackParticles;
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem deathParticles;
-    [SerializeField] ParticleSystem healParticles; 
+    [SerializeField] ParticleSystem healParticles;
+    [SerializeField] ParticleSystem refuelParticles;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -173,7 +174,7 @@ public class Jetpack : MonoBehaviour
                 Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), astronaut.GetComponent<Collider>(), false);
                 state = State.Alive;
                 audioSource.PlayOneShot(refuelPortion);
-                // TODO: play refueling particles
+                refuelParticles.Play();
                 Destroy(collision.gameObject);
             }
 
@@ -182,12 +183,12 @@ public class Jetpack : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     private void LoadFirstLevel()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     private void RespondToThrustInput()
@@ -227,8 +228,6 @@ public class Jetpack : MonoBehaviour
         {
             usefuel.UseFuel(fuelThrustValue);
             var currentFuel = usefuel.GetCurrentFuel(trackFuel);
-            // Play refuel sound
-            // Play refuel particles 
         }
     }
 
