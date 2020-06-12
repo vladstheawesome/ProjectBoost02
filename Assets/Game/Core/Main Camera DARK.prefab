@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1591396555734818609}
   - component: {fileID: 2086594284548045683}
   m_Layer: 8
-  m_Name: Main Camera 1
+  m_Name: Main Camera DARK
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,13 +31,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9024184447761045530}
-  m_LocalRotation: {x: -0.029937712, y: -0.031797957, z: 0.0009528772, w: -0.99904543}
+  m_LocalRotation: {x: 0.029938953, y: 0.031797722, z: -0.0009529002, w: 0.9990454}
   m_LocalPosition: {x: -31.100515, y: 5.5070915, z: -20.010073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 2, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.433, y: 3.6460001, z: 0}
 --- !u!20 &9024184447761045528
 Camera:
   m_ObjectHideFlags: 0
