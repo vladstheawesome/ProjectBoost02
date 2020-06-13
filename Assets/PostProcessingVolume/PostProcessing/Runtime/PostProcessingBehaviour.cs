@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 {
     using DebugMode = BuiltinDebugViewsModel.Mode;
 
-#if true || UNITY_5_4_OR_NEWER
+#if UNITY_5_4_OR_NEWER
     [ImageEffectAllowedInSceneView]
 #endif
     [RequireComponent(typeof(Camera)), DisallowMultipleComponent, ExecuteInEditMode]
