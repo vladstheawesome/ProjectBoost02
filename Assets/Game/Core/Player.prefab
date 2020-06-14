@@ -942,6 +942,7 @@ GameObject:
   - component: {fileID: 1474160767}
   - component: {fileID: 139146248053421846}
   - component: {fileID: 875928387}
+  - component: {fileID: 225853208026819803}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -958,7 +959,7 @@ Transform:
   m_GameObject: {fileID: 1814703501341791834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.79, z: 0}
-  m_LocalScale: {x: 1, y: 2.3, z: 1}
+  m_LocalScale: {x: 0.6, y: 1.3, z: 0.6}
   m_Children:
   - {fileID: 1814703500862898803}
   - {fileID: 7206664738547233381}
@@ -1154,7 +1155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395539c14924c6b4cb841e07546fcf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rcsThrust: 250
+  Float: 0
+  rcsThrust: 190
   mainThrust: 1000
   levelLoadDelay: 2
   mainEngine: {fileID: 8300000, guid: 4f4d9aeb4623bcb4dac79f023f307889, type: 3}
@@ -1198,6 +1200,18 @@ MonoBehaviour:
   maxFuel: 120
   currentFuel: 0
   fuelBar: {fileID: 0}
+--- !u!114 &225853208026819803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814703501341791834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da243633b6eae074b9c3025599c555d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4103276277437080682
 PrefabInstance:
   m_ObjectHideFlags: 0
