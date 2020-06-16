@@ -25,7 +25,7 @@ namespace ProjectBoost.Attributes
 
         public string GetCurrentBestTime()
         {
-            bestTime = "0:09.039";
+            bestTime = "0:26.039";
 
             return bestTime;
         }

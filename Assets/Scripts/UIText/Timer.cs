@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +44,7 @@ namespace ProjectBoost.UIText
         {
             finished = true;
 
-            float SecondsAndMicroSecondsBestTime = float.Parse(ExtractSecondsAndMicroSeconds(bestTime));            
+            float SecondsAndMicroSecondsBestTime = float.Parse(ExtractSecondsAndMicroSeconds(bestTime));
             float MinutesAndSecondsBestTime = float.Parse(ExtractMinutesAndSeconds(bestTime));
 
             float SecondsAndMicroSecondsCurrentTime = float.Parse(ExtractSecondsAndMicroSeconds(currentTime.text));
@@ -52,24 +53,100 @@ namespace ProjectBoost.UIText
             var timeDifferenceSecondsAndMicros = SecondsAndMicroSecondsBestTime - SecondsAndMicroSecondsCurrentTime;
             var timeDifferenceMinutesAndSeconds = MinutesAndSecondsBestTime - MinutesAndSecondsCurrentTime;
 
-            // TODO: add minutes value           
+            // TODO: add minutes value          
+            // extract seconds ONLY value from string
+            // extract minutes ONLY value from string
+            // if best seconds time < current seconds time
+            // we carry the 1 to the minute values
+            // append the minute value to the secondAndMicroseconds string
+
+            var minuteValue = MinuteValue(SecondsAndMicroSecondsBestTime, MinutesAndSecondsBestTime, SecondsAndMicroSecondsCurrentTime, MinutesAndSecondsCurrentTime);
+
+            var secondsValue = ExtractSecondsOnly(timeDifferenceSecondsAndMicros);
+
+            var milliSeconds = ExtractMicroSecondsOnly(timeDifferenceSecondsAndMicros);
 
             if (timeDifferenceSecondsAndMicros > 0 || timeDifferenceMinutesAndSeconds > 0)
             {
                 // We have a lower time
-                timeDifference.text = "-" + timeDifferenceSecondsAndMicros.ToString();
+                timeDifference.text = "-"+ minuteValue + ":" + secondsValue + "." + milliSeconds;
                 timeDifference.color = Color.green;
             }
             else
             {
                 // append + symbol onto the negative time (i.e worse time than current best)
-                var appendPlusSymbol = timeDifferenceSecondsAndMicros.ToString().Replace("-", "+");
+                //var appendPlusSymbol = minuteValue.ToString().Replace("-", "+");
 
-                timeDifference.text = appendPlusSymbol;
+                timeDifference.text = "+" + minuteValue + ":" + secondsValue + "." + milliSeconds;
                 timeDifference.color = Color.red;
             }
 
             currentTime.color = Color.yellow;
+         }
+
+        private string ExtractMicroSecondsOnly(float timeDifferenceSecondsAndMicros)
+        {
+            var tdSecondsMicros = timeDifferenceSecondsAndMicros.ToString();
+
+            tdSecondsMicros = tdSecondsMicros.Substring(tdSecondsMicros.IndexOf(".") + 1);
+            
+            if (tdSecondsMicros.Length > 3)
+            {
+                var roundedtdSecondsMicros = tdSecondsMicros.Substring(0, 3);
+                return roundedtdSecondsMicros;
+            }
+
+            return tdSecondsMicros;
+        }
+
+        private string ExtractSecondsOnly(float timeDifferenceSecondsAndMicros)
+        {
+            var tdSecondsMicros = timeDifferenceSecondsAndMicros.ToString();
+
+            tdSecondsMicros = tdSecondsMicros.Substring(0, tdSecondsMicros.IndexOf("."));
+            
+            if (tdSecondsMicros.Substring(0,1) == "-")
+            {
+                tdSecondsMicros = tdSecondsMicros.Replace("-", string.Empty);
+            }
+
+            if (tdSecondsMicros.Length == 1)
+            {
+                tdSecondsMicros = "0" + tdSecondsMicros;
+            }
+
+              return tdSecondsMicros;
+        }
+
+        private string MinuteValue(float SecondsAndMicroSecondsBestTime, float MinutesAndSecondsBestTime, float SecondsAndMicroSecondsCurrentTime, float MinutesAndSecondsCurrentTime)
+        {
+            string secondsOnlyBestTime = ExtractMinutesAndSeconds(SecondsAndMicroSecondsBestTime.ToString());
+            string minutesOnlyBestTime = ExtractMinutesAndSeconds(MinutesAndSecondsBestTime.ToString());
+
+            string secondsOnlyCurrentTime = ExtractMinutesAndSeconds(SecondsAndMicroSecondsCurrentTime.ToString());
+            string minutesOnlyCurrentTime = ExtractMinutesAndSeconds(MinutesAndSecondsCurrentTime.ToString());
+
+            float newMinuteValue = 0f;
+
+            //if (float.Parse(secondsOnlyCurrentTime) > float.Parse(secondsOnlyBestTime))
+            //{
+            //    // Carry the 1
+            //    newMinuteValue = (1f + float.Parse(minutesOnlyBestTime)) - float.Parse(minutesOnlyCurrentTime);
+            //}
+            //else
+            //{
+                newMinuteValue = (float.Parse(minutesOnlyBestTime)) - float.Parse(minutesOnlyCurrentTime);
+            //}
+
+            string stringValue = newMinuteValue.ToString();
+
+            if (stringValue.Length == 1)
+            {
+                stringValue = "0" + stringValue;
+            }
+            //var digitsInMinute = stringValue.Substring(stringValue.IndexOf)
+
+            return stringValue;
         }
 
         private string ExtractMinutesAndSeconds(string minutesSeconds)

@@ -2219,7 +2219,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806343980}
-  m_LocalRotation: {x: -0.02993828, y: -0.031210352, z: 0.00093526917, w: -0.99906397}
+  m_LocalRotation: {x: -0.029939318, y: -0.030072354, z: 0.00090116734, w: -0.99909884}
   m_LocalPosition: {x: -31.100515, y: 5.5070915, z: -20.010073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3064,6 +3064,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f67c984f5137449a30791fe2d8fcb0, type: 3}
+--- !u!114 &7175562466690981927 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 688932413310954238, guid: b5f67c984f5137449a30791fe2d8fcb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7175562466690981926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7bd54b145ffeb449a643525f818e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7175562466690981928 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9204873123985188091, guid: b5f67c984f5137449a30791fe2d8fcb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7175562466690981926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7175562466690981929 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5086470468087069984, guid: b5f67c984f5137449a30791fe2d8fcb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7175562466690981926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7206664739586237915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3071,6 +3107,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 220435206, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
+      propertyPath: currentTime
+      value: 
+      objectReference: {fileID: 7175562466690981929}
+    - target: {fileID: 220435206, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
+      propertyPath: timeDifference
+      value: 
+      objectReference: {fileID: 7175562466690981928}
+    - target: {fileID: 220435206, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
+      propertyPath: bestTimeDisplay
+      value: 
+      objectReference: {fileID: 7175562466690981927}
     - target: {fileID: 875928387, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
       propertyPath: fuelBar
       value: 

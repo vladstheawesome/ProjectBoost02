@@ -1227,7 +1227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4effafe68fda647963170dd5bac7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTimerText: {fileID: 0}
+  currentTime: {fileID: 0}
+  timeDifference: {fileID: 0}
   bestTimeDisplay: {fileID: 0}
 --- !u!1001 &4103276277437080682
 PrefabInstance:

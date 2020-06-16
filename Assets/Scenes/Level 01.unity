@@ -27942,11 +27942,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7375009006298804227, guid: b5f67c984f5137449a30791fe2d8fcb0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8956719521311130507, guid: b5f67c984f5137449a30791fe2d8fcb0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -27979,14 +27974,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 220435206, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
-      propertyPath: currentTimerText
-      value: 
-      objectReference: {fileID: 776062468}
-    - target: {fileID: 220435206, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
-      propertyPath: bestTimeDisplay
-      value: 
-      objectReference: {fileID: 731989188}
-    - target: {fileID: 220435206, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
       propertyPath: currentTime
       value: 
       objectReference: {fileID: 776062468}
@@ -27994,6 +27981,10 @@ PrefabInstance:
       propertyPath: timeDifference
       value: 
       objectReference: {fileID: 7175562466690981927}
+    - target: {fileID: 220435206, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
+      propertyPath: bestTimeDisplay
+      value: 
+      objectReference: {fileID: 731989188}
     - target: {fileID: 875928387, guid: 7a740cb0b07bf58439f7dde274e390d4, type: 3}
       propertyPath: fuelBar
       value: 
