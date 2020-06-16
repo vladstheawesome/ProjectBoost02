@@ -25,7 +25,7 @@ namespace ProjectBoost.Control
         [Header("Thrust Info & General")]
         [SerializeField] float rcsThrust = 100f;
         [SerializeField] float mainThrust = 100f;
-        [SerializeField] float levelLoadDelay = 4f;
+        [SerializeField] float levelLoadDelay = 7f;
 
         [Header("Audio Clips")]
         [SerializeField] AudioClip mainEngine;
@@ -120,7 +120,9 @@ namespace ProjectBoost.Control
             audioSource.Stop();
             audioSource.PlayOneShot(success);
             successParticles.Play();
-            Invoke("LoadNextLevel", levelLoadDelay);
+
+            // TODO: Only load next level when player clicks continue / enter
+            // Invoke("LoadNextLevel", levelLoadDelay);
         }
 
         private void PlayerTakeDamage(Collision collision)

@@ -943,6 +943,7 @@ GameObject:
   - component: {fileID: 139146248053421846}
   - component: {fileID: 875928387}
   - component: {fileID: 225853208026819803}
+  - component: {fileID: 220435206}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1155,7 +1156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395539c14924c6b4cb841e07546fcf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Float: 0
+  FloatThrust: 0
+  RotateForward: 0
+  RotateBackwards: 0
   rcsThrust: 190
   mainThrust: 1000
   levelLoadDelay: 2
@@ -1182,7 +1185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60414d25ec726b940bb6345a33c4dfed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10000
   currentHealth: 0
   healthBar: {fileID: 0}
 --- !u!114 &875928387
@@ -1212,6 +1215,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da243633b6eae074b9c3025599c555d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &220435206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814703501341791834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4effafe68fda647963170dd5bac7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTimerText: {fileID: 0}
+  bestTimeDisplay: {fileID: 0}
 --- !u!1001 &4103276277437080682
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,10 +14,8 @@ namespace ProjectBoost.Control
 
         private void OnTriggerEnter(Collider other)
         {
-            //print("Finished");
-            //var player = other.gameObject.GetComponentInChildren<Animator>();
-            //player.SetBool(TransitionParameter.FloatThrust.ToString(), false);
-            //player.SetBool(TransitionParameter.Landing.ToString(), true);
+            print("Finished");
+            GameObject.Find("Player").SendMessage("Finished");
         }
     }
 }
