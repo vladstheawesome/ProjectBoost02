@@ -1227,6 +1227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4effafe68fda647963170dd5bac7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  successMenu: {fileID: 3950516315761051908, guid: de488e61f7772354eb9d694f5160024e,
+    type: 3}
   currentTime: {fileID: 0}
   timeDifference: {fileID: 0}
   bestTimeDisplay: {fileID: 0}

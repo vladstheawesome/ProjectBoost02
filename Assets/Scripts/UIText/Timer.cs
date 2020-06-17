@@ -10,6 +10,8 @@ namespace ProjectBoost.UIText
 {
     public class Timer : MonoBehaviour
     {
+        public Canvas successMenu;
+
         public Text currentTime;
         public Text timeDifference;
         public BestTimeDisplay bestTimeDisplay;
@@ -53,13 +55,6 @@ namespace ProjectBoost.UIText
             var timeDifferenceSecondsAndMicros = SecondsAndMicroSecondsBestTime - SecondsAndMicroSecondsCurrentTime;
             var timeDifferenceMinutesAndSeconds = MinutesAndSecondsBestTime - MinutesAndSecondsCurrentTime;
 
-            // TODO: add minutes value          
-            // extract seconds ONLY value from string
-            // extract minutes ONLY value from string
-            // if best seconds time < current seconds time
-            // we carry the 1 to the minute values
-            // append the minute value to the secondAndMicroseconds string
-
             var minuteValue = MinuteValue(SecondsAndMicroSecondsBestTime, MinutesAndSecondsBestTime, SecondsAndMicroSecondsCurrentTime, MinutesAndSecondsCurrentTime);
 
             var secondsValue = ExtractSecondsOnly(timeDifferenceSecondsAndMicros);
@@ -68,20 +63,20 @@ namespace ProjectBoost.UIText
 
             if (timeDifferenceSecondsAndMicros > 0 || timeDifferenceMinutesAndSeconds > 0)
             {
-                // We have a lower time
+                // We beat the best time
                 timeDifference.text = "-"+ minuteValue + ":" + secondsValue + "." + milliSeconds;
                 timeDifference.color = Color.green;
             }
             else
             {
-                // append + symbol onto the negative time (i.e worse time than current best)
-                //var appendPlusSymbol = minuteValue.ToString().Replace("-", "+");
-
                 timeDifference.text = "+" + minuteValue + ":" + secondsValue + "." + milliSeconds;
                 timeDifference.color = Color.red;
             }
 
             currentTime.color = Color.yellow;
+
+            // Load Success Menu
+            Canvas instantiate_ = Instantiate(successMenu) as Canvas;
          }
 
         private string ExtractMicroSecondsOnly(float timeDifferenceSecondsAndMicros)
